@@ -1,6 +1,6 @@
 package cz.vse.java.adventura.logika;
 
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class PrikazProzkoumej implements IPrikaz {
     private static final String NAZEV = "prozkoumej";
@@ -17,12 +17,15 @@ public class PrikazProzkoumej implements IPrikaz {
         }
 
         Prostor aktualniProstor = plan.getAktualniProstor();
-        String vychody = aktualniProstor.getVychody().stream()
-                .map(Prostor::getNazev)
-                .collect(Collectors.joining(", "));
+        List<String> predmety = aktualniProstor.getPredmety();
+        String odpoved;
+        if (predmety.isEmpty()) {
+            odpoved = "Tady nic nehledej člověče!";
+        } else {
+            odpoved = "V místnosti je možné prozkoumat tyto předměty: " + String.join(", ", predmety);
+        }
 
-        return "Jsi v prostoru: " + aktualniProstor.getNazev() +
-                "\nMůžeš se vydat do: " + vychody;
+        return odpoved;
     }
 
     @Override

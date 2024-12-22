@@ -114,7 +114,7 @@ public class Prostor {
      * @return Dlouhý popis prostoru
      */
     public String dlouhyPopis() {
-        return "Jsi v mistnosti/prostoru " + popis + ".\n"
+        return "Jsi v prostoru " + popis + ".\n"
                 + popisVychodu();
     }
 
@@ -165,5 +165,18 @@ public class Prostor {
      */
     public Collection<Prostor> getVychody() {
         return Collections.unmodifiableCollection(vychody);
+    }
+
+    public List<String> getPredmety() { return predmety; }
+
+    public void vlozPredmet(String predmet) {
+        predmety.add(predmet);
+    }
+
+    public boolean obsahujePredmet(String predmet) {
+        return predmety.contains(predmet);
+    }
+    public void odstranPredmet(String predmet) {
+        predmety.remove(predmet);
     }
 }

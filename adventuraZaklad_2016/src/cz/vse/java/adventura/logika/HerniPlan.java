@@ -15,7 +15,7 @@ package cz.vse.java.adventura.logika;
 public class HerniPlan {
     
     private Prostor aktualniProstor;
-    private Inventar inventar;
+    private final Inventar inventar;
      /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
@@ -23,8 +23,8 @@ public class HerniPlan {
     public HerniPlan() {
         zalozProstoryHry();
         this.inventar = new Inventar();
-
     }
+
     /**
      *  Vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví domeček.
@@ -46,6 +46,7 @@ public class HerniPlan {
         brana.setVychod(les);
         les.setVychod(brana);
         les.setVychod(krizovatka);
+        les.vlozPredmet("prkno");
         krizovatka.setVychod(les);
         krizovatka.setVychod(udoli);
         krizovatka.setVychod(chyse);
@@ -60,7 +61,6 @@ public class HerniPlan {
         jeskyne.setVychod(mesto);
         mesto.setVychod(jeskyne);
         mesto.setVychod(chram);
-
 
         aktualniProstor = brana;  // hra začíná v domečku
     }
@@ -85,5 +85,7 @@ public class HerniPlan {
         System.out.println(inventar.vypisInventar());
     }
 
-
+    public Inventar getInventar() {
+        return inventar;
+    }
 }

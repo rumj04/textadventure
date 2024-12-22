@@ -22,14 +22,13 @@ public class Hra implements IHra {
     public Hra() {
         herniPlan = new HerniPlan();
         platnePrikazy = new SeznamPrikazu();
-        Inventar inventar = new Inventar();
 
 
 //        platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
 //        platnePrikazy.vlozPrikaz(new PrikazKonec(this));
-//        platnePrikazy.vlozPrikaz(new PrikazProzkoumej(herniPlan));
-//        platnePrikazy.vlozPrikaz(new PrikazVezmi(herniPlan, inventar));
+        platnePrikazy.vlozPrikaz(new PrikazProzkoumej(herniPlan));
+        platnePrikazy.vlozPrikaz(new PrikazVezmi(herniPlan));
 //        platnePrikazy.vlozPrikaz(new PrikazPouzij(herniPlan, inventar));
 
 
