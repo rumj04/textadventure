@@ -24,12 +24,12 @@ public class Hra implements IHra {
         platnePrikazy = new SeznamPrikazu();
 
 
-//        platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
+        platnePrikazy.vlozPrikaz(new PrikazNapoveda(platnePrikazy));
         platnePrikazy.vlozPrikaz(new PrikazJdi(herniPlan));
-//        platnePrikazy.vlozPrikaz(new PrikazKonec(this));
+        platnePrikazy.vlozPrikaz(new PrikazKonec(this));
         platnePrikazy.vlozPrikaz(new PrikazProzkoumej(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazVezmi(herniPlan));
-//        platnePrikazy.vlozPrikaz(new PrikazPouzij(herniPlan, inventar));
+        platnePrikazy.vlozPrikaz(new PrikazPouzij(herniPlan));
 
 
 
@@ -39,10 +39,12 @@ public class Hra implements IHra {
      *  Vrátí úvodní zprávu pro hráče.
      */
     public String vratUvitani() {
-        return "Vítejte!\n" +
-               "Toto je příběh o Červené Karkulce, babičce a vlkovi.\n" +
-               "Napište 'nápověda', pokud si nevíte rady, jak hrát dál.\n" +
-               "\n" +
+        return "Vítejte, mladý dobrodruhu!\n" +
+                "Rozhodl ses vypravit na expedici do neznámého pralesa, kde se podle legendy skrývá ztracené město plné pokladů.\n" +
+                "Tvým cílem je město najít a cestou získat artefakt, který odemkne přístup k tajemnému chrámu s pokladem.\n" +
+                "Právě teď se nacházíš u vstupní brány do pralesa a jediné co teď zbývá je začít s tvou cestou. Hodně štěstí dobrodruhu!\n" +
+                "Napiš 'nápověda', pokud si nevíš rady, jak hrát dál.\n" +
+                "\n" +
                herniPlan.getAktualniProstor().dlouhyPopis();
     }
     
@@ -50,7 +52,7 @@ public class Hra implements IHra {
      *  Vrátí závěrečnou zprávu pro hráče.
      */
     public String vratEpilog() {
-        return "Dík, že jste si zahráli.  Ahoj.";
+        return "Dík, že jste si zahráli.";
     }
     
     /** 

@@ -36,8 +36,10 @@ public class HerniPlan {
         Prostor les = new Prostor("les", "Zelený les s vysokými stromy a hustým porostem");
         Prostor krizovatka = new Prostor("křižovatka", "Křižovatka, kde se sbíhají různé cesty vedoucí do pralesa");
         Prostor udoli = new Prostor("údolí", "Temné údolí plné nebezpečných hadů");
+        Prostor vpravo = new Prostor("vpravo", "Cesta vpravo, zde jsou nebezpeční hadi");
+        Prostor vlevo = new Prostor("vlevo", "Cesta vlevo, možná tu najdeš něco zajímavého");
         Prostor chyse = new Prostor("chýše", "Opuštěná chýše, která skrývá tajemství");
-        Prostor poust = new Prostor("poušť", "Malá poušť, kde je ukrytá truhla s artefaktem");
+        Prostor poust = new Prostor("poušť", "Malá poušť, kde se nejspíš nic nenachází... \n nejspíš");
         Prostor reka = new Prostor("řeka", "Divoká řeka, u které se nachází skrytá jeskyně");
         Prostor jeskyne = new Prostor("jeskyně", "Skrytá jeskyně s tajemnou bytostí, která klade hádanky");
         Prostor mesto = new Prostor("město", "Ztracené město pokryté mechem a rostlinami");
@@ -51,16 +53,23 @@ public class HerniPlan {
         krizovatka.setVychod(udoli);
         krizovatka.setVychod(chyse);
         udoli.setVychod(krizovatka);
+        udoli.setVychod(vpravo);
+        udoli.setVychod(vlevo);
+        vpravo.setVychod(udoli);
+        vlevo.setVychod(udoli);
+        vlevo.vlozPredmet("klíč");
         chyse.setVychod(krizovatka);
         krizovatka.setVychod(poust);
         poust.setVychod(krizovatka);
         poust.setVychod(reka);
+        poust.vlozPredmet("truhla");
         reka.setVychod(poust);
         reka.setVychod(jeskyne);
         jeskyne.setVychod(reka);
         jeskyne.setVychod(mesto);
         mesto.setVychod(jeskyne);
         mesto.setVychod(chram);
+        chram.vlozPredmet("zamčený poklad");
 
         aktualniProstor = brana;  // hra začíná v domečku
     }

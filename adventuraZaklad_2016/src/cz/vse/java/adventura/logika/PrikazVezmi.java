@@ -29,9 +29,15 @@ public class PrikazVezmi implements IPrikaz {
             Prostor aktualniProstor = plan.getAktualniProstor();
 
             if (aktualniProstor.obsahujePredmet(nazevPredmetu)) {
-                aktualniProstor.odstranPredmet(nazevPredmetu);
-                plan.getInventar().pridatPredmet(nazevPredmetu);
-                return "Sebral jsi předmět: " + nazevPredmetu;
+                if (aktualniProstor.jeTruhla(nazevPredmetu)) {
+                    aktualniProstor.odstranPredmet(nazevPredmetu);
+                    plan.getInventar().pridatPredmet("artefakt");
+                    return "Otevřel jsi truhlu a našel jsi artefakt!";
+                } else {
+                    aktualniProstor.odstranPredmet(nazevPredmetu);
+                    plan.getInventar().pridatPredmet(nazevPredmetu);
+                    return "Sebral jsi předmět: " + nazevPredmetu;
+                }
             } else {
                 return "Předmět '" + nazevPredmetu + "' tu není.";
             }

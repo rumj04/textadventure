@@ -179,4 +179,7 @@ public class Prostor {
     public void odstranPredmet(String predmet) {
         predmety.remove(predmet);
     }
+    public boolean jeTruhla(String nazevPredmetu) {
+        return "truhla".equals(nazevPredmetu);
+    }
 }
