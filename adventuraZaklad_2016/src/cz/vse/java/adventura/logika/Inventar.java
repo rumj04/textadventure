@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Inventar {
     private List<String> predmety;
 
-    /**
+    /**jd
      * Konstruktor, který inicializuje prázdný inventář.
      */
     public Inventar() {
@@ -19,10 +19,18 @@ public class Inventar {
 
     /**
      * Přidá předmět do inventáře.
-     * @param predmet název předmětu
+     * @param nazevPredmetu název předmětu
      */
-    public void pridatPredmet(String predmet) {
-        predmety.add(predmet);
+    public void pridatPredmet(String nazevPredmetu) {
+        predmety.add(nazevPredmetu);
+    }
+
+    public boolean obsahujePredmet(String nazevPredmetu) {
+        return predmety.contains(nazevPredmetu);
+    }
+
+    public void odstranPredmet(String nazevPredmetu) {
+        predmety.remove(nazevPredmetu);
     }
 
     /**
@@ -37,11 +45,12 @@ public class Inventar {
      * Vrátí seznam předmětů jako formátovaný řetězec.
      * @return obsah inventáře jako řetězec
      */
+
     public String vypisInventar() {
         if (jePrazdny()) {
             return "Tvůj inventář je prázdný.";
         } else {
-            return "V inventáři máš: " + predmety.stream().collect(Collectors.joining(", "));
+            return "V inventáři máš: " + String.join(", ", predmety);
         }
     }
 }

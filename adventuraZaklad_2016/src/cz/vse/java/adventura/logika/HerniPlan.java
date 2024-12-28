@@ -13,16 +13,17 @@ package cz.vse.java.adventura.logika;
  *@version    pro školní rok 2016/2017
  */
 public class HerniPlan {
-    
     private Prostor aktualniProstor;
     private final Inventar inventar;
+    private Prostor reka;
+    private Prostor mesto;
      /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
      */
     public HerniPlan() {
         zalozProstoryHry();
-        this.inventar = new Inventar();
+        inventar = new Inventar();
     }
 
     /**
@@ -39,16 +40,16 @@ public class HerniPlan {
         Prostor vpravo = new Prostor("vpravo", "Cesta vpravo, zde jsou nebezpeční hadi");
         Prostor vlevo = new Prostor("vlevo", "Cesta vlevo, možná tu najdeš něco zajímavého");
         Prostor chyse = new Prostor("chýše", "Opuštěná chýše, která skrývá tajemství");
-        Prostor poust = new Prostor("poušť", "Malá poušť, kde se nejspíš nic nenachází... \n nejspíš");
-        Prostor reka = new Prostor("řeka", "Divoká řeka, u které se nachází skrytá jeskyně");
+        Prostor poust = new Prostor("poušť", "Malá poušť, kde se nejspíš nic nenachází... \n nebo přece jen?");
+        reka = new Prostor("řeka", "Divoká řeka, u které se nachází skrytá jeskyně");
         Prostor jeskyne = new Prostor("jeskyně", "Skrytá jeskyně s tajemnou bytostí, která klade hádanky");
-        Prostor mesto = new Prostor("město", "Ztracené město pokryté mechem a rostlinami");
+        mesto = new Prostor("město", "Ztracené město pokryté mechem a rostlinami");
         Prostor chram = new Prostor("chrám", "Chrám skrytého pokladu, obklopený magickou bariérou");
 
         brana.setVychod(les);
         les.setVychod(brana);
         les.setVychod(krizovatka);
-        les.vlozPredmet("prkno");
+        les.pridatPredmet("prkno");
         krizovatka.setVychod(les);
         krizovatka.setVychod(udoli);
         krizovatka.setVychod(chyse);
@@ -57,19 +58,17 @@ public class HerniPlan {
         udoli.setVychod(vlevo);
         vpravo.setVychod(udoli);
         vlevo.setVychod(udoli);
-        vlevo.vlozPredmet("klíč");
+        vlevo.pridatPredmet("klíč");
         chyse.setVychod(krizovatka);
         krizovatka.setVychod(poust);
         poust.setVychod(krizovatka);
         poust.setVychod(reka);
-        poust.vlozPredmet("truhla");
+        poust.pridatPredmet("truhla");
         reka.setVychod(poust);
         reka.setVychod(jeskyne);
         jeskyne.setVychod(reka);
-        jeskyne.setVychod(mesto);
-        mesto.setVychod(jeskyne);
         mesto.setVychod(chram);
-        chram.vlozPredmet("zamčený poklad");
+        chram.setVychod(mesto);
 
         aktualniProstor = brana;  // hra začíná v domečku
     }
@@ -96,5 +95,10 @@ public class HerniPlan {
 
     public Inventar getInventar() {
         return inventar;
+    }
+
+    public void odemkniVychodRekaMesto() {
+        reka.setVychod(mesto);
+        mesto.setVychod(reka);
     }
 }

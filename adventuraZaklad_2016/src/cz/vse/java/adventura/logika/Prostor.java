@@ -169,16 +169,18 @@ public class Prostor {
 
     public List<String> getPredmety() { return predmety; }
 
-    public void vlozPredmet(String predmet) {
-        predmety.add(predmet);
+    public void pridatPredmet(String nazevPredmetu) {
+        predmety.add(nazevPredmetu);
     }
 
-    public boolean obsahujePredmet(String predmet) {
-        return predmety.contains(predmet);
+    public boolean obsahujePredmet(String nazevPredmetu) {
+        return predmety.contains(nazevPredmetu);
     }
-    public void odstranPredmet(String predmet) {
-        predmety.remove(predmet);
+
+    public void odstranPredmet(String nazevPredmetu) {
+        predmety.remove(nazevPredmetu);
     }
+
     public boolean jeTruhla(String nazevPredmetu) {
         return "truhla".equals(nazevPredmetu);
     }

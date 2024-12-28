@@ -19,10 +19,12 @@ public class PrikazProzkoumej implements IPrikaz {
         Prostor aktualniProstor = plan.getAktualniProstor();
         List<String> predmety = aktualniProstor.getPredmety();
         String odpoved;
-        if (predmety.isEmpty()) {
+        if (aktualniProstor.getNazev().equals("chrám")) {
+            odpoved = "Pro otevření chrámu potřebuješ artefakt. Pokud ho máš tak ho použij. \n Pokud ne, tak ho najdi.";
+        } else if (predmety.isEmpty()) {
             odpoved = "Tady nic nehledej člověče!";
         } else {
-            odpoved = "V místnosti je možné prozkoumat tyto předměty: " + String.join(", ", predmety);
+            odpoved = "V prostoru se nachází: " + String.join(", ", predmety);
         }
 
         return odpoved;

@@ -4,13 +4,15 @@ package cz.vse.java.adventura.logika;
 public class PrikazVezmi implements IPrikaz {
         private static final String NAZEV = "vezmi";
         private final HerniPlan plan;
+        private final Inventar inventar;
         /**
          * Konstruktor třídy. Inicializuje herní plán a inventář.
          * @param plan herní plán, který obsahuje informace o aktuálním prostoru
          */
 
-        public PrikazVezmi(HerniPlan plan) {
+        public PrikazVezmi(HerniPlan plan, Inventar inventar) {
             this.plan = plan;
+            this.inventar = inventar;
         }
 
         /**
@@ -31,11 +33,11 @@ public class PrikazVezmi implements IPrikaz {
             if (aktualniProstor.obsahujePredmet(nazevPredmetu)) {
                 if (aktualniProstor.jeTruhla(nazevPredmetu)) {
                     aktualniProstor.odstranPredmet(nazevPredmetu);
-                    plan.getInventar().pridatPredmet("artefakt");
+                    inventar.pridatPredmet("artefakt");
                     return "Otevřel jsi truhlu a našel jsi artefakt!";
                 } else {
                     aktualniProstor.odstranPredmet(nazevPredmetu);
-                    plan.getInventar().pridatPredmet(nazevPredmetu);
+                    inventar.pridatPredmet(nazevPredmetu);
                     return "Sebral jsi předmět: " + nazevPredmetu;
                 }
             } else {
