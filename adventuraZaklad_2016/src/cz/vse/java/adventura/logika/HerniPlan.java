@@ -43,7 +43,7 @@ public class HerniPlan {
         Prostor chyse = new Prostor("chýše", "Opuštěná chýše, která skrývá tajemství");
         Prostor poust = new Prostor("poušť", "Malá poušť, kde se nejspíš nic nenachází \n nebo že by...");
         reka = new Prostor("řeka", "Divoká řeka, u které se nachází skrytá jeskyně");
-        Prostor jeskyne = new Prostor("jeskyně", "Skrytá jeskyně s tajemnou bytostí, která klade hádanky");
+        Prostor jeskyne = new Prostor("jeskyně", "Skrytá jeskyně s tajemnou bytostí, která klade hádanky. Pokud na hádanku odpovíš správně, otevře se ti cesta do ztraceného města. Pokud ne, zůstaneš uvězněný v jeskyni a tvé dobrodružství zde skončí");
         mesto = new Prostor("město", "Ztracené město pokryté mechem a rostlinami");
         Prostor chram = new Prostor("chrám", "Chrám skrytého pokladu, obklopený magickou bariérou");
 
@@ -106,5 +106,10 @@ public class HerniPlan {
     public void odemkniVychodRekaMesto() {
         reka.setVychod(mesto);
         mesto.setVychod(reka);
+    }
+
+    public void ukoncitHru() {
+        System.out.println("Tady tvá cesta končí - můžeš to zkusit znovu");
+        System.exit(0);
     }
 }

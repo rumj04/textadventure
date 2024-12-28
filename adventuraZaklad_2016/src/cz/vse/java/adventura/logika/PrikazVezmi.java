@@ -38,6 +38,9 @@ public class PrikazVezmi implements IPrikaz {
                 } else {
                     aktualniProstor.odstranPredmet(nazevPredmetu);
                     inventar.pridatPredmet(nazevPredmetu);
+                    if (nazevPredmetu.equals("svitek")) {
+                        return "Sebral jsi předmět: " + nazevPredmetu + "\nNa svitku je napsáno: Odpověď na hádanku je 'dech'.";
+                    }
                     return "Sebral jsi předmět: " + nazevPredmetu;
                 }
             } else {

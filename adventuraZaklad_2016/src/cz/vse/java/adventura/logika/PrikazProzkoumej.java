@@ -12,26 +12,25 @@ public class PrikazProzkoumej implements IPrikaz {
 
     @Override
     public String provedPrikaz(String... parametry) {
-        if (parametry.length > 0) {
-            return "Příkaz prozkoumej se zadává bez parametrů.";
-        }
-
         Prostor aktualniProstor = plan.getAktualniProstor();
         List<String> predmety = aktualniProstor.getPredmety();
         String odpoved;
 
         if (aktualniProstor.getNazev().equals("jeskyně")) {
             if (parametry.length == 0) {
-                return "Hádanka: Co má čtyři nohy ráno, dvě odpoledne a tři večer? Zadej odpověď pomocí 'prozkoumej [odpověď]'.";
+                return "Hádanka: Jsem lehčí než pírko, ale žádný člověk mě neudrží déle než pár minut? Zadej odpověď pomocí 'prozkoumej [odpověď]'.";
             } else {
                 String odpovedNaHadanku = String.join(" ", parametry).toLowerCase();
-                if (odpovedNaHadanku.equals("člověk")) {
+                if (odpovedNaHadanku.equals("dech")) {
                     plan.odemkniVychodRekaMesto();
                     return "Správně! Dozvěděl ses o ztraceném městě. Dostaneš se k němu cestou přes řeku pomocí prkna.";
                 } else {
-                    return "Špatná odpověď. Zkus to znovu.";
+                    plan.ukoncitHru();
+                    return "Špatně. Zůstal jsi uvězněný v jeskyni.";
                 }
             }
+        } else if (parametry.length > 0) {
+            return "Příkaz prozkoumej se zadává bez parametrů.";
         } else if (aktualniProstor.getNazev().equals("chrám")) {
             odpoved = "Pro otevření chrámu potřebuješ artefakt. Pokud ho máš tak ho použij. \n Pokud ne, tak ho najdi.";
         } else if (predmety.isEmpty()) {
