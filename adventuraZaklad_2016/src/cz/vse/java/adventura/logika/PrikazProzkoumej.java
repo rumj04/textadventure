@@ -19,7 +19,20 @@ public class PrikazProzkoumej implements IPrikaz {
         Prostor aktualniProstor = plan.getAktualniProstor();
         List<String> predmety = aktualniProstor.getPredmety();
         String odpoved;
-        if (aktualniProstor.getNazev().equals("chrám")) {
+
+        if (aktualniProstor.getNazev().equals("jeskyně")) {
+            if (parametry.length == 0) {
+                return "Hádanka: Co má čtyři nohy ráno, dvě odpoledne a tři večer? Zadej odpověď pomocí 'prozkoumej [odpověď]'.";
+            } else {
+                String odpovedNaHadanku = String.join(" ", parametry).toLowerCase();
+                if (odpovedNaHadanku.equals("člověk")) {
+                    plan.odemkniVychodRekaMesto();
+                    return "Správně! Dozvěděl ses o ztraceném městě. Dostaneš se k němu cestou přes řeku pomocí prkna.";
+                } else {
+                    return "Špatná odpověď. Zkus to znovu.";
+                }
+            }
+        } else if (aktualniProstor.getNazev().equals("chrám")) {
             odpoved = "Pro otevření chrámu potřebuješ artefakt. Pokud ho máš tak ho použij. \n Pokud ne, tak ho najdi.";
         } else if (predmety.isEmpty()) {
             odpoved = "Tady nic nehledej člověče!";

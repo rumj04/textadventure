@@ -14,6 +14,7 @@ package cz.vse.java.adventura.logika;
  */
 public class HerniPlan {
     private Prostor aktualniProstor;
+    private Prostor predchoziProstor;
     private final Inventar inventar;
     private Prostor reka;
     private Prostor mesto;
@@ -37,10 +38,10 @@ public class HerniPlan {
         Prostor les = new Prostor("les", "Zelený les s vysokými stromy a hustým porostem");
         Prostor krizovatka = new Prostor("křižovatka", "Křižovatka, kde se sbíhají různé cesty vedoucí do pralesa");
         Prostor udoli = new Prostor("údolí", "Temné údolí plné nebezpečných hadů");
-        Prostor vpravo = new Prostor("vpravo", "Cesta vpravo, zde jsou nebezpeční hadi");
-        Prostor vlevo = new Prostor("vlevo", "Cesta vlevo, možná tu najdeš něco zajímavého");
+        Prostor vpravo = new Prostor("vpravo", "Cesta vpravo - narazil jsi na nebezpečné hady, jediná možnost je utéct");
+        Prostor vlevo = new Prostor("vlevo", "Cesta vlevo - možná tu najdeš něco zajímavého");
         Prostor chyse = new Prostor("chýše", "Opuštěná chýše, která skrývá tajemství");
-        Prostor poust = new Prostor("poušť", "Malá poušť, kde se nejspíš nic nenachází... \n nebo přece jen?");
+        Prostor poust = new Prostor("poušť", "Malá poušť, kde se nejspíš nic nenachází \n nebo že by...");
         reka = new Prostor("řeka", "Divoká řeka, u které se nachází skrytá jeskyně");
         Prostor jeskyne = new Prostor("jeskyně", "Skrytá jeskyně s tajemnou bytostí, která klade hádanky");
         mesto = new Prostor("město", "Ztracené město pokryté mechem a rostlinami");
@@ -56,10 +57,10 @@ public class HerniPlan {
         udoli.setVychod(krizovatka);
         udoli.setVychod(vpravo);
         udoli.setVychod(vlevo);
-        vpravo.setVychod(udoli);
         vlevo.setVychod(udoli);
         vlevo.pridatPredmet("klíč");
         chyse.setVychod(krizovatka);
+        chyse.pridatPredmet("svitek");
         krizovatka.setVychod(poust);
         poust.setVychod(krizovatka);
         poust.setVychod(reka);
@@ -89,8 +90,13 @@ public class HerniPlan {
      *@param  prostor nový aktuální prostor
      */
     public void setAktualniProstor(Prostor prostor) {
+        predchoziProstor = aktualniProstor;
         aktualniProstor = prostor;
         System.out.println(inventar.vypisInventar());
+    }
+
+    public Prostor getPredchoziProstor() {
+        return predchoziProstor;
     }
 
     public Inventar getInventar() {
