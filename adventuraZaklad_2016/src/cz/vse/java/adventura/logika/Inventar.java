@@ -5,7 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Třída Inventar spravuje seznam sebraných předmětů hráče.
+ *  Třída Inventar - třída spravující seznam sebraných předmětů hráče.
+ *
+ *  Tato třída je součástí logiky aplikace. Umožňuje hráči přidávat, odebírat a kontrolovat předměty v inventáři.
+ *  Také poskytuje metodu pro výpis obsahu inventáře.
+ *
+ *  @autor      Jan Ruml
+ *  @version    1.0
+ *  @created    prosinec 2024
  */
 public class Inventar {
     private List<String> predmety;

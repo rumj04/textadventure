@@ -1,6 +1,15 @@
     package cz.vse.java.adventura.logika;
 
-
+    /**
+     *  Třída PrikazPouzij - třída představující příkaz pro použití předmětu.
+     *
+     *  Tato třída je součástí logiky aplikace. Zpracovává příkaz "pouzij",
+     *  který umožňuje hráči použít předmět z inventáře na aktuální prostor.
+     *
+     *  @autor      Jan Ruml
+     *  @version    1.0
+     *  @created    prosinec 2024
+     */
 
     public class PrikazPouzij implements IPrikaz {
         private static final String NAZEV = "použij";

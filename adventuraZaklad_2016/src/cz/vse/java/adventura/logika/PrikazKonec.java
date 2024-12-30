@@ -1,7 +1,7 @@
 package cz.vse.java.adventura.logika;
 
 /**
- *  Třída PrikazKonec implementuje pro hru příkaz konec.
+ *  Třída PrikazKonec implementuje pro hru příkaz konec, který umožňuje hráči ukončit hru.
  *  Tato třída je součástí jednoduché textové hry.
  *
  *@author     Jarmila Pavlickova

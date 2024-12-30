@@ -1,16 +1,12 @@
 package cz.vse.java.adventura.logika;
 
-
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
-
+ *
  *  Tato třída inicializuje prvky ze kterých se hra skládá:
  *  vytváří všechny prostory,
- *  propojuje je vzájemně pomocí východů 
+ *  propojuje je vzájemně pomocí východů
  *  a pamatuje si aktuální prostor, ve kterém se hráč právě nachází.
- *
- *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
- *@version    pro školní rok 2016/2017
  */
 public class HerniPlan {
     private Prostor aktualniProstor;
@@ -19,13 +15,14 @@ public class HerniPlan {
     private Prostor reka;
     private Prostor mesto;
     private Prostor chram;
-     /**
+
+    /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
      */
     public HerniPlan() {
-        zalozProstoryHry();
         inventar = new Inventar();
+        zalozProstoryHry();
     }
 
     /**
@@ -34,7 +31,6 @@ public class HerniPlan {
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-
         Prostor brana = new Prostor("brána", "Vstupní brána do pralesa, která otevírá cestu do neznáma");
         Prostor les = new Prostor("les", "Zelený les s vysokými stromy a hustým porostem");
         Prostor krizovatka = new Prostor("křižovatka", "Křižovatka, kde se sbíhají různé cesty vedoucí do pralesa");
@@ -52,37 +48,41 @@ public class HerniPlan {
         les.setVychod(brana);
         les.setVychod(krizovatka);
         les.pridatPredmet("prkno");
+        les.pridatPredmet("ovoce");
         krizovatka.setVychod(les);
         krizovatka.setVychod(udoli);
         krizovatka.setVychod(chyse);
+        krizovatka.setVychod(poust);
+        krizovatka.pridatPredmet("meč");
         udoli.setVychod(krizovatka);
         udoli.setVychod(vpravo);
         udoli.setVychod(vlevo);
+        udoli.pridatPredmet("lampa");
         vlevo.setVychod(udoli);
         vlevo.pridatPredmet("klíč");
+        vpravo.pridatPredmet("had");
         chyse.setVychod(krizovatka);
         chyse.pridatPredmet("svitek");
-        krizovatka.setVychod(poust);
         poust.setVychod(krizovatka);
         poust.setVychod(reka);
         poust.pridatPredmet("truhla");
+        poust.pridatPredmet("štít");
         reka.setVychod(poust);
         reka.setVychod(jeskyne);
         jeskyne.setVychod(reka);
 
         aktualniProstor = brana;  // hra začíná v domečku
     }
-    
+
     /**
      *  Metoda vrací odkaz na aktuální prostor, ve ktetém se hráč právě nachází.
      *
      *@return     aktuální prostor
      */
-    
     public Prostor getAktualniProstor() {
         return aktualniProstor;
     }
-    
+
     /**
      *  Metoda nastaví aktuální prostor, používá se nejčastěji při přechodu mezi prostory
      *
@@ -96,6 +96,10 @@ public class HerniPlan {
 
     public Prostor getPredchoziProstor() {
         return predchoziProstor;
+    }
+
+    public Prostor setPredchoziProstor(Prostor prostor) {
+        return predchoziProstor = prostor;
     }
 
     public Inventar getInventar() {

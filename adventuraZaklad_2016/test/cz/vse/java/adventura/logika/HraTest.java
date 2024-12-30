@@ -53,14 +53,58 @@ public class HraTest {
      */
     @Test
     public void testPrubehHry() {
-        assertEquals("domeček", hra1.getHerniPlan().getAktualniProstor().getNazev());
+        assertEquals("brána", hra1.getHerniPlan().getAktualniProstor().getNazev());
         hra1.zpracujPrikaz("jdi les");
         assertFalse(hra1.konecHry());
         assertEquals("les", hra1.getHerniPlan().getAktualniProstor().getNazev());
-        hra1.zpracujPrikaz("jdi hluboký_les");
+        hra1.zpracujPrikaz("jdi křižovatka");
         assertFalse(hra1.konecHry());
-        assertEquals("hluboký_les", hra1.getHerniPlan().getAktualniProstor().getNazev());
+        assertEquals("křižovatka", hra1.getHerniPlan().getAktualniProstor().getNazev());
         hra1.zpracujPrikaz("konec");
         assertTrue(hra1.konecHry());
+    }
+
+    @Test
+    void vratUvitani() {
+        String uvodniZprava = hra1.vratUvitani();
+        assertNotNull(uvodniZprava);
+        assertTrue(uvodniZprava.contains("Vítej, mladý dobrodruhu!"));
+    }
+
+    @Test
+    void vratEpilog() {
+        String epilog = hra1.vratEpilog();
+        assertNotNull(epilog);
+        assertEquals("Díky, že jste si zahráli.", epilog);
+    }
+
+    @Test
+    void konecHry() {
+        assertFalse(hra1.konecHry());
+        hra1.setKonecHry(true);
+        assertTrue(hra1.konecHry());
+    }
+
+    @Test
+    void zpracujPrikaz() {
+        String odpoved = hra1.zpracujPrikaz("neznámý_příkaz");
+        assertEquals("Nevím co tím myslíš? Tento příkaz neznám. ", odpoved);
+    }
+
+    @Test
+    public void testZpracujPrikazJdi() {
+        hra1.zpracujPrikaz("jdi les");
+        assertEquals("les", hra1.getHerniPlan().getAktualniProstor().getNazev());
+    }
+
+    @Test
+    void setKonecHry() {
+        hra1.setKonecHry(true);
+        assertTrue(hra1.konecHry());
+    }
+
+    @Test
+    void getHerniPlan() {
+        assertNotNull(hra1.getHerniPlan());
     }
 }

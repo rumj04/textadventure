@@ -49,5 +49,4 @@ class PrikazNapoveda implements IPrikaz {
       public String getNazev() {
         return NAZEV;
      }
-
 }

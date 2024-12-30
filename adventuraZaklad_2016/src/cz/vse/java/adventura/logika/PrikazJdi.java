@@ -1,7 +1,8 @@
 package cz.vse.java.adventura.logika;
 
 /**
- *  Třída PrikazJdi implementuje pro hru příkaz jdi.
+ *  Třída PrikazJdi implementuje pro hru příkaz jdi,
+ *  který umožňuje hráči přesunout se do sousedního prostoru.
  *  Tato třída je součástí jednoduché textové hry.
  *  
  *@author     Jarmila Pavlickova, Luboš Pavlíček

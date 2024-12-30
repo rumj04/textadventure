@@ -1,5 +1,15 @@
 package cz.vse.java.adventura.logika;
 
+/**
+ *  Třída PrikazProzkoumej - třída představující příkaz pro prozkoumání prostoru.
+
+ *  Tato třída je součástí logiky aplikace. Zpracovává příkaz "prozkoumej",
+ *  který umožňuje hráči prozkoumat aktuální prostor.
+ *
+ *  @autor      Jan Ruml
+ *  @version    1.0
+ *  @created    prosinec 2024
+ */
 
 public class PrikazVezmi implements IPrikaz {
         private static final String NAZEV = "vezmi";
@@ -55,5 +65,4 @@ public class PrikazVezmi implements IPrikaz {
         public String getNazev() {
             return NAZEV;
         }
-
     }
