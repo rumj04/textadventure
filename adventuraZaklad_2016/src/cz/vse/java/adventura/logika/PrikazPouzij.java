@@ -50,10 +50,19 @@
                 case "artefakt":
                     if (aktualniProstor.getNazev().equals("chrám")) {
                         inventar.odstranPredmet("artefakt");
-                        aktualniProstor.pridatPredmet("poklad");
-                        return "Odemkl jsi chrám a našel poklad! Gratuluji, dokončil jsi hru!";
+                        inventar.pridatPredmet("poklad");
+                        plan.zobrazEpilog();
+                        return "";
                     } else {
                         return "Artefakt nelze použít zde.";
+                    }
+                case "klíč":
+                    if (aktualniProstor.getNazev().equals("město")) {
+                        inventar.odstranPredmet("klíč");
+                        plan.odemkniVychodMestoChram();
+                        return "Použil jsi klíč a odemkl jsi cestu do chrámu.";
+                    } else {
+                        return "Klíč nelze použít zde.";
                     }
                 default:
                     return "Předmět '" + nazevPredmetu + "' nelze použít.";

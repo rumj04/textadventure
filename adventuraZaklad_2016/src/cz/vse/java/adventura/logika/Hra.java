@@ -2,7 +2,7 @@ package cz.vse.java.adventura.logika;
 
 /**
  *  Třída Hra - třída představující logiku adventury.
- * 
+
  *  Toto je hlavní třída  logiky aplikace.  Tato třída vytváří instanci třídy HerniPlan, která inicializuje mistnosti hry
  *  a vytváří seznam platných příkazů a instance tříd provádějící jednotlivé příkazy.
  *  Vypisuje uvítací a ukončovací text hry.

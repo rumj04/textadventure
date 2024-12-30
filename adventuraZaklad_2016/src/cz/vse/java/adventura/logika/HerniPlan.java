@@ -3,7 +3,7 @@ package cz.vse.java.adventura.logika;
 
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
- * 
+
  *  Tato třída inicializuje prvky ze kterých se hra skládá:
  *  vytváří všechny prostory,
  *  propojuje je vzájemně pomocí východů 
@@ -18,6 +18,7 @@ public class HerniPlan {
     private final Inventar inventar;
     private Prostor reka;
     private Prostor mesto;
+    private Prostor chram;
      /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
@@ -37,15 +38,15 @@ public class HerniPlan {
         Prostor brana = new Prostor("brána", "Vstupní brána do pralesa, která otevírá cestu do neznáma");
         Prostor les = new Prostor("les", "Zelený les s vysokými stromy a hustým porostem");
         Prostor krizovatka = new Prostor("křižovatka", "Křižovatka, kde se sbíhají různé cesty vedoucí do pralesa");
-        Prostor udoli = new Prostor("údolí", "Temné údolí plné nebezpečných hadů");
+        Prostor udoli = new Prostor("údolí", "Temné údolí plné nebezpečných hadů. Dále se můžeš vydat vpravo nebo vlevo");
         Prostor vpravo = new Prostor("vpravo", "Cesta vpravo - narazil jsi na nebezpečné hady, jediná možnost je utéct");
         Prostor vlevo = new Prostor("vlevo", "Cesta vlevo - možná tu najdeš něco zajímavého");
         Prostor chyse = new Prostor("chýše", "Opuštěná chýše, která skrývá tajemství");
-        Prostor poust = new Prostor("poušť", "Malá poušť, kde se nejspíš nic nenachází \n nebo že by...");
+        Prostor poust = new Prostor("poušť", "Malá poušť, kde se nejspíš nic nenachází \n nebo že by..");
         reka = new Prostor("řeka", "Divoká řeka, u které se nachází skrytá jeskyně");
-        Prostor jeskyne = new Prostor("jeskyně", "Skrytá jeskyně s tajemnou bytostí, která klade hádanky. Pokud na hádanku odpovíš správně, otevře se ti cesta do ztraceného města. Pokud ne, zůstaneš uvězněný v jeskyni a tvé dobrodružství zde skončí");
-        mesto = new Prostor("město", "Ztracené město pokryté mechem a rostlinami");
-        Prostor chram = new Prostor("chrám", "Chrám skrytého pokladu, obklopený magickou bariérou");
+        Prostor jeskyne = new Prostor("jeskyně", "Skrytá jeskyně, je tu i tajemná bytost, která klade hádanky. \n Pokud na hádanku odpovíš správně, dozvíš se, kudy vede cesta do ztraceného města. \n Pokud ne, zůstaneš uvězněný v jeskyni a tvé dobrodružství zde skončí. \n \n Pro zobrazení hádanky prozkoumej jeskyni");
+        mesto = new Prostor("město", "Ztracené město pokryté mechem a rostlinami. \n Brána do města je ale zamčená, pokud chceš pokračovat, musíš ji odemknout");
+        chram = new Prostor("chrám", "Chrám skrytého pokladu, obklopený magickou bariérou");
 
         brana.setVychod(les);
         les.setVychod(brana);
@@ -68,8 +69,6 @@ public class HerniPlan {
         reka.setVychod(poust);
         reka.setVychod(jeskyne);
         jeskyne.setVychod(reka);
-        mesto.setVychod(chram);
-        chram.setVychod(mesto);
 
         aktualniProstor = brana;  // hra začíná v domečku
     }
@@ -108,8 +107,18 @@ public class HerniPlan {
         mesto.setVychod(reka);
     }
 
+    public void odemkniVychodMestoChram() {
+        mesto.setVychod(chram);
+        chram.setVychod(mesto);
+    }
+
+    public void zobrazEpilog() {
+        System.out.println("Odemkl jsi chrám a našel poklad! Gratuluji, dokončil jsi hru!");
+        System.exit(0);
+    }
+
     public void ukoncitHru() {
-        System.out.println("Tady tvá cesta končí - můžeš to zkusit znovu");
+        System.out.println("Špatně. Jsi uvězněný v jeskyni a tvá cesta tady končí. \n Můžeš to zkusit znovu");
         System.exit(0);
     }
 }

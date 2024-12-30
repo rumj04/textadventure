@@ -34,7 +34,7 @@ public class PrikazVezmi implements IPrikaz {
                 if (aktualniProstor.jeTruhla(nazevPredmetu)) {
                     aktualniProstor.odstranPredmet(nazevPredmetu);
                     inventar.pridatPredmet("artefakt");
-                    return "Otevřel jsi truhlu a našel jsi artefakt!";
+                    return "Otevřel jsi truhlu a našel jsi artefakt! Přidal jsi ho do inventáře.";
                 } else {
                     aktualniProstor.odstranPredmet(nazevPredmetu);
                     inventar.pridatPredmet(nazevPredmetu);
@@ -56,10 +56,4 @@ public class PrikazVezmi implements IPrikaz {
             return NAZEV;
         }
 
-        /**
-         * Metoda vrací seznam sebraných předmětů (inventář).
-         */
-        public void getInventar() {
-            return ;
-        }
     }
